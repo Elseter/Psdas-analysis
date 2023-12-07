@@ -56,19 +56,21 @@ for index, row in df.iterrows():
             # If no scholarship and Graduate
             e_G_noS += 1
 
-
 # Variables
-# ---------
-dropNoSPerc = (dropout_noS / total_students) * 100)
+dropNSP = round(((dropout_noS / total_students) * 100), 2)
+dropSP = round(((dropout_S / total_students) * 100), 2)
+stayNSP = round(((e_G_noS / total_students) * 100), 2)
+staySP = round(((e_G_S / total_students) * 100), 2)
+
 # Print Data
 # -----------
 print("SCHOLARSHIP INFO")
 print("----------------")
 print(f"No Scholarship Dropouts: {dropout_noS}  | "
-      f"{(dropout_noS / total_students) * 100}%")
+      f"{dropNSP}%")
 print(f"Scholarship Dropouts: {dropout_S}  | "
-      f"{(dropout_S / total_students) * 100}%")
+      f"{dropSP}%")
 print(f"No Scholarship continuing students: {e_G_noS}  | "
-      f"{(e_G_noS / total_students) * 100}%")
+      f"{stayNSP}%")
 print(f"Scholarship continuing students: {e_G_S}  | "
-      f"{(e_G_S / total_students) * 100}%")
+      f"{staySP}%")
