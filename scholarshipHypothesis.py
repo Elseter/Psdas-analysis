@@ -56,6 +56,10 @@ for index, row in df.iterrows():
             # If no scholarship and Graduate
             e_G_noS += 1
 
+
+# Variables
+# ---------
+dropNoSPerc = (dropout_noS / total_students) * 100)
 # Print Data
 # -----------
 print("SCHOLARSHIP INFO")
