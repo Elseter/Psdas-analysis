@@ -60,7 +60,11 @@ for index, row in df.iterrows():
 # -----------
 print("SCHOLARSHIP INFO")
 print("----------------")
-print(f"No Scholarship Dropouts: {dropout_noS}  | {(dropout_noS / total_students) * 100}%")
-print(f"Scholarship Dropouts: {dropout_S}  | {(dropout_S / total_students) * 100}%")
-print(f"No Scholarship continuing students: {e_G_noS}  | {(e_G_noS / total_students) * 100}%")
-print(f"Scholarship continuing students: {e_G_S}  | {(e_G_S / total_students) * 100}%")
+print(f"No Scholarship Dropouts: {dropout_noS}  | "
+      f"{(dropout_noS / total_students) * 100}%")
+print(f"Scholarship Dropouts: {dropout_S}  | "
+      f"{(dropout_S / total_students) * 100}%")
+print(f"No Scholarship continuing students: {e_G_noS}  | "
+      f"{(e_G_noS / total_students) * 100}%")
+print(f"Scholarship continuing students: {e_G_S}  | "
+      f"{(e_G_S / total_students) * 100}%")
