@@ -26,8 +26,8 @@ y = predict_students_dropout_and_academic_success.data.targets
 
 dropout_noS = 0
 dropout_S = 0
-E_G_noS = 0
-E_G_S = 0
+e_G_noS = 0
+e_G_S = 0
 total_students = 4424.0
 
 df = X[['Scholarship holder']]
@@ -38,16 +38,16 @@ for index, row in df.iterrows():
         if row['Target'] == "Dropout":
             dropout_S += 1
         else:
-            E_G_S += 1
+            e_G_S += 1
     else:
         if row['Target'] == "Dropout":
             dropout_noS += 1
         else:
-            E_G_noS += 1
+            e_G_noS += 1
 
 print("SCHOLARSHIP INFO")
 print("----------------")
 print(f"No Scholarship Dropouts: {dropout_noS}  | {(dropout_noS / total_students)*100}%")
 print(f"Scholarship Dropouts: {dropout_S}  | {(dropout_S / total_students)*100}%")
-print(f"No Scholarship continuing students: {E_G_noS}  | {(E_G_noS / total_students)*100}%")
-print(f"Scholarship continuing students: {E_G_S}  | {(E_G_S / total_students)*100}%")
+print(f"No Scholarship continuing students: {e_G_noS}  | {(e_G_noS / total_students)*100}%")
+print(f"Scholarship continuing students: {e_G_S}  | {(e_G_S / total_students)*100}%")
