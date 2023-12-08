@@ -11,8 +11,9 @@
 
 # Import Statements
 from ucimlrepo import fetch_ucirepo
-import matplotlib.pyplot
+import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 # fetch dataset
 predict_students_dropout_and_academic_success = fetch_ucirepo(id=697)
@@ -179,3 +180,71 @@ print(f"Males between 22 - 25: {m22_25d}")
 print(f"Males between 26 - 30: {m26_30d}")
 print(f"Males between 31 - 40: {m31_40d}")
 print(f"Males 41+: {m41plusd}")
+
+# Bar Graph
+# Saved as .jpg in images folder
+# __________________________________
+index = ['17 - 21', '22 - 25', '26 - 30', '31 - 40', '41+']
+mdrop = [m17_21d , m22_25d , m26_30d , m31_40d , m41plusd]
+fdrop = [f17_21d , f22_25d , f26_30d , f31_40d , f41plusd]
+bar_ft = pd.DataFrame({'Male Dropouts': mdrop, 'Female Dropouts': fdrop}, index = index)
+ew = bar_ft.plot.bar(rot=0)
+plt.savefig('images/AgeGenderBarGraph.jpg', dpi=300)
+plt.clf()
+
+# Pie Chart Variables
+totalmd = (m17_21d + m22_25d + m26_30d + m31_40d + m41plusd)
+totalfd = (f17_21d + f22_25d + f26_30d + f31_40d + f41plusd)
+# Pie Chart  1 Percentages
+# male percentages (dropout)
+m17_21 = round(((m17_21d / totalmd) * 100), 2)
+m22_25 = round(((m22_25d / totalmd) * 100), 2)
+m26_30 = round(((m26_30d / totalmd) * 100), 2)
+m31_40 = round(((m31_40d / totalmd) * 100), 2)
+m41plus = round(((m41plusd / totalmd) * 100), 2)
+
+# Pie Chart 1
+# Saved as .jpg in images folder
+# __________________________________
+y = np.array([m17_21, m22_25, m26_30, m31_40, m41plus])
+labels = ["17-21", "22-25", "26-30", "31-40", "41+"]
+
+# Function to add percentage values to Pie Chart
+def autopct_format(values):
+    def my_format(pct):
+        total = sum(values)
+        val = int(round(pct * total / 100.0))
+        return '{:.1f}%'.format(pct, v=val)
+    return my_format
+
+plt.pie(y, labels = labels, autopct = autopct_format(y))
+plt.legend(bbox_to_anchor=(-0.40, -0.15), loc="lower left")
+plt.savefig('images/MaleDropoutPIEchart.jpg', dpi=300)
+plt.clf()
+
+# Pie Chart  2 Percentages
+# female percentages (dropout)
+f17_21 = round(((f17_21d / totalfd) * 100), 2)
+f22_25 = round(((f22_25d / totalfd) * 100), 2)
+f26_30 = round(((f26_30d / totalfd) * 100), 2)
+f31_40 = round(((f31_40d / totalfd) * 100), 2)
+f41plus = round(((f41plusd / totalfd) * 100), 2)
+
+# Pie Chart 1
+# Saved as .jpg in images folder
+# __________________________________
+y = np.array([f17_21, f22_25, f26_30, f31_40, f41plus])
+labels = ["17-21", "22-25", "26-30", "31-40", "41+"]
+
+# Function to add percentage values to Pie Chart
+def autopct_format(values):
+    def my_format(pct):
+        total = sum(values)
+        val = int(round(pct * total / 100.0))
+        return '{:.1f}%'.format(pct, v=val)
+    return my_format
+
+plt.pie(y, labels = labels, autopct = autopct_format(y))
+plt.legend(bbox_to_anchor=(-0.40, -0.15), loc="lower left")
+plt.savefig('images/FemaleDropoutPIEchart.jpg', dpi=300)
+plt.clf()
