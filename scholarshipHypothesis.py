@@ -11,8 +11,9 @@
 
 # Import Statements
 from ucimlrepo import fetch_ucirepo
-import matplotlib.pyplot
+import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 # fetch dataset
 predict_students_dropout_and_academic_success = fetch_ucirepo(id=697)
@@ -61,6 +62,36 @@ dropNSP = round(((dropout_noS / total_students) * 100), 2)
 dropSP = round(((dropout_S / total_students) * 100), 2)
 stayNSP = round(((e_G_noS / total_students) * 100), 2)
 staySP = round(((e_G_S / total_students) * 100), 2)
+
+# Create bar graph
+index = ['Has Scholarship', 'Does not']
+dropout = [dropout_S, dropout_noS]
+cont = [e_G_S, e_G_noS]
+
+bar_df = pd.DataFrame({'Dropout': dropout, 'Enrolled/Graduate': cont}, index=index)
+ax = bar_df.plot.bar(rot=0)
+plt.savefig('images/scholarshipBARgraph.jpg', dpi=300)
+plt.clf()
+
+# Create pie chart
+y = np.array([dropNSP, dropSP, stayNSP, staySP])
+mylabels = ["Dropout No Scholarship", "Dropout Scholarship",
+            "Enrolled/Graduate No Scholarship", "Enrolled/Graduate Scholarship"]
+myexplode = [0, 0.3, 0, 0]
+
+
+def autopct_format(values):
+    def my_format(pct):
+        total = sum(values)
+        val = int(round(pct * total / 100.0))
+        return '{:.1f}%'.format(pct, v=val)
+    return my_format
+
+
+plt.pie(y, labels=mylabels, explode=myexplode, autopct=autopct_format(y))
+plt.legend(bbox_to_anchor=(-0.40,-0.15), loc="lower left")
+plt.savefig('images/scholarshipPIEchart.jpg', dpi=300)
+plt.clf()
 
 # Print Data
 # -----------
