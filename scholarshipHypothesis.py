@@ -25,6 +25,23 @@ y = predict_students_dropout_and_academic_success.data.targets
 # -------------------------------------------------------------------
 # SCHOLARSHIPS AND DROPOUTS
 
+# General background on Target Column
+d = y.query('Target == "Dropout"').Target.count()
+g = y.query('Target == "Graduate"').Target.count()
+e = y.query('Target == "Enrolled"').Target.count()
+print("Target Background")
+print("-----------------")
+print(g)
+print(e)
+print(d)
+print()
+
+# General background on Scholarship Column
+X.rename(columns={'Scholarship holder':'sh'}, inplace=True)
+numS = X.query('sh == 1').sh.count()
+numNoS = X.query('sh == 0').sh.count()
+print(numS)
+print(numNoS)
 # Variables
 # ---------
 dropout_noS = 0  # num of students with no Scholarship who drop out
@@ -35,14 +52,14 @@ total_students = 4424.0
 
 # Formatting the dataframe
 # ------------------------
-df = X[['Scholarship holder']]  # grab scholarship column from X
+df = X[['sh']]  # grab scholarship column from X
 df = pd.concat([df, y], axis=1, join="inner")  # combine S column with Y column
 df = df.reset_index()  # Set the pointer to first value in dataframe
 
 # Iterating through new dataframe
 # -------------------------------
 for index, row in df.iterrows():
-    if row['Scholarship holder'] == 1:
+    if row['sh'] == 1:
         if row['Target'] == "Dropout":
             # If got scholarship and Dropout
             dropout_S += 1
@@ -58,28 +75,33 @@ for index, row in df.iterrows():
             e_G_noS += 1
 
 # Variables
+# The following variables are show the percentage of students
 dropNSP = round(((dropout_noS / total_students) * 100), 2)
 dropSP = round(((dropout_S / total_students) * 100), 2)
 stayNSP = round(((e_G_noS / total_students) * 100), 2)
 staySP = round(((e_G_S / total_students) * 100), 2)
 
 # Create bar graph
+# Saved as .jpg in images folder
+# ------------------------------
 index = ['Has Scholarship', 'Does not']
 dropout = [dropout_S, dropout_noS]
 cont = [e_G_S, e_G_noS]
-
 bar_df = pd.DataFrame({'Dropout': dropout, 'Enrolled/Graduate': cont}, index=index)
 ax = bar_df.plot.bar(rot=0)
 plt.savefig('images/scholarshipBARgraph.jpg', dpi=300)
 plt.clf()
 
 # Create pie chart
+# Saved as .jpg in images folder
+# ------------------------------
 y = np.array([dropNSP, dropSP, stayNSP, staySP])
 mylabels = ["Dropout No Scholarship", "Dropout Scholarship",
             "Enrolled/Graduate No Scholarship", "Enrolled/Graduate Scholarship"]
 myexplode = [0, 0.3, 0, 0]
 
 
+# Function to add percentage values to Pie Chart
 def autopct_format(values):
     def my_format(pct):
         total = sum(values)
@@ -89,7 +111,7 @@ def autopct_format(values):
 
 
 plt.pie(y, labels=mylabels, explode=myexplode, autopct=autopct_format(y))
-plt.legend(bbox_to_anchor=(-0.40,-0.15), loc="lower left")
+plt.legend(bbox_to_anchor=(-0.40, -0.15), loc="lower left")
 plt.savefig('images/scholarshipPIEchart.jpg', dpi=300)
 plt.clf()
 
