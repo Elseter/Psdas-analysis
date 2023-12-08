@@ -25,7 +25,7 @@ y = predict_students_dropout_and_academic_success.data.targets
 # -------------------------------------------------------------------
 # SCHOLARSHIPS AND DROPOUTS
 
-# General background on Target Column
+# General Background on Target Column
 d = y.query('Target == "Dropout"').Target.count()
 g = y.query('Target == "Graduate"').Target.count()
 e = y.query('Target == "Enrolled"').Target.count()

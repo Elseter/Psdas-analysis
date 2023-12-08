@@ -24,6 +24,12 @@ y = predict_students_dropout_and_academic_success.data.targets
 # -------------------------------------------------------------------
 # AGE, GENDER, AND DROPOUTS
 
+# General Background on Target Column
+d = y.query('Target == "Dropout"').Target.count()
+print("Target Background")
+print("-----------------")
+print(d)
+
 # variables
 # ---------------------------------------------------------------------------
 f17_21d = 0  # female students between the ages 17 - 21 that dropped out
@@ -60,7 +66,7 @@ ft = ft.reset_index()   # Set the pointer to first value in dataframe
 # Iterating through the new dataframe
 for index, column in ft.iterrows():
     if column['Gender'] == 1:
-        #count of male students
+        # count of male students
         totalm += 1
         # if 1 is male
         if column['Age at enrollment'] >= 17 or column['Age at enrollment'] <= 21:
@@ -149,18 +155,27 @@ for index, column in ft.iterrows():
                 f41pluse += 1
 # -------------------------------------------------------------------------
 # print statements
+print("Gender Information")
+print("------------------")
+print(f"Total number of Female Students: {totalf}")
+print(f"Total number of Male Students: {totalm}")
+print(f"Total number of Male dropout Students: {m17_21d + m22_25d + m26_30d + m31_40d + m41plusd}")
+print(f"Total number of Male enrolled Students: {m17_21e + m22_25e + m26_30e + m31_40e + m41pluse}")
+print(f"Total number of Female dropout Students: {f17_21d + f22_25d + f26_30d + f31_40d + f41plusd}")
+print(f"Total number of Female enrolled Students: {f17_21e + f22_25e + f26_30e + f31_40e + f41pluse}")
 
-# total female students
-print(totalf)
-# total male students
-print(totalm)
-# total male students that dropped out
-print(m17_21d + m22_25d + m26_30d + m31_40d + m41plusd)
-# total male students are enrolled
-print(m17_21e + m22_25e + m26_30e + m31_40e + m41pluse)
-# total female students that dropped out
-print(f17_21d + f22_25d + f26_30d + f31_40d + f41plusd)
-# total female students are enrolled
-print(f17_21e + f22_25e + f26_30e + f31_40e + f41pluse)
+print("Age & Dropout Information (Females)")
+print("-------------------------")
+print(f"Females between 17 - 21: {f17_21d}")
+print(f"Females between 22 - 25: {f22_25d}")
+print(f"Females between 26 - 30: {f26_30d}")
+print(f"Females between 31 - 40: {f31_40d}")
+print(f"Females 41+: {f41plusd}")
 
-
+print("Age & Dropout Information (Males)")
+print("-------------------------")
+print(f"Males between 17 - 21: {m17_21d}")
+print(f"Males between 22 - 25: {m22_25d}")
+print(f"Males between 26 - 30: {m26_30d}")
+print(f"Males between 31 - 40: {m31_40d}")
+print(f"Males 41+: {m41plusd}")
