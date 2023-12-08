@@ -69,7 +69,7 @@ for index, column in ft.iterrows():
         # count of male students
         totalm += 1
         # if 1 is male
-        if column['Age at enrollment'] >= 17 or column['Age at enrollment'] <= 21:
+        if column['Age at enrollment'] >= 17 and column['Age at enrollment'] <= 21:
             # check if dropout
             if column['Target'] == "Dropout":
                 # If got scholarship and Dropout
@@ -77,7 +77,7 @@ for index, column in ft.iterrows():
             else:
                 # If got scholarship and Graduate
                 m17_21e += 1
-        elif column['Age at enrollment'] >= 22 or column['Age at enrollment'] <= 25:
+        elif column['Age at enrollment'] >= 22 and column['Age at enrollment'] <= 25:
             # check if dropout
             if column['Target'] == "Dropout":
                 # If got scholarship and Dropout
@@ -85,7 +85,7 @@ for index, column in ft.iterrows():
             else:
                 # If got scholarship and Graduate
                 m22_25e += 1
-        elif column['Age at enrollment'] >= 26 or column['Age at enrollment'] <= 30:
+        elif column['Age at enrollment'] >= 26 and column['Age at enrollment'] <= 30:
             # check if dropout
             if column['Target'] == "Dropout":
                 # If got scholarship and Dropout
@@ -93,7 +93,7 @@ for index, column in ft.iterrows():
             else:
                 # If got scholarship and Graduate
                 m26_30e += 1
-        elif column['Age at enrollment'] >= 31 or column['Age at enrollment'] <= 40:
+        elif column['Age at enrollment'] >= 31 and column['Age at enrollment'] <= 40:
             # check if dropout
             if column['Target'] == "Dropout":
                 # If got scholarship and Dropout
@@ -113,7 +113,7 @@ for index, column in ft.iterrows():
         # count of female students
         totalf += 1
         # if 1 is female
-        if column['Age at enrollment'] >= 17 or column['Age at enrollment'] <= 21:
+        if column['Age at enrollment'] >= 17 and column['Age at enrollment'] <= 21:
             # check if dropout
             if column['Target'] == "Dropout":
                 # If female drop out
@@ -121,7 +121,7 @@ for index, column in ft.iterrows():
             else:
                 # If got scholarship and Graduate
                 f17_21e += 1
-        elif column['Age at enrollment'] >= 22 or column['Age at enrollment'] <= 25:
+        elif column['Age at enrollment'] >= 22 and column['Age at enrollment'] <= 25:
             # check if dropout
             if column['Target'] == "Dropout":
                 # If female drop out
@@ -129,7 +129,7 @@ for index, column in ft.iterrows():
             else:
                 # If got scholarship and Graduate
                 f22_25e += 1
-        elif column['Age at enrollment'] >= 26 or column['Age at enrollment'] <= 30:
+        elif column['Age at enrollment'] >= 26 and column['Age at enrollment'] <= 30:
             # check if dropout
             if column['Target'] == "Dropout":
                 # If female drop out
@@ -137,7 +137,7 @@ for index, column in ft.iterrows():
             else:
                 # If got scholarship and Graduate
                 f26_30e += 1
-        elif column['Age at enrollment'] >= 31 or column['Age at enrollment'] <= 40:
+        elif column['Age at enrollment'] >= 31 and column['Age at enrollment'] <= 40:
             # check if dropout
             if column['Target'] == "Dropout":
                 # If female drop out
